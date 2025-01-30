@@ -75,7 +75,7 @@ public class HW1 {
                 current.next = new_node;
             }
 
-            return;
+            // return; - Void methods do not require a return statement
         }
 
         /*
@@ -88,11 +88,13 @@ public class HW1 {
         public void removeElementsLT(int ltValue) {
 
             // YOUR CODE GOES HERE
+            // Move head to the first node which is greater than or equal to ltValue
             while (head != null && head.data < ltValue) {
                 head = head.next;
             }
 
             Node current = head;
+            // Traverse the list and remove nodes with data less than ltValue
             while (current != null && current.next != null) {
                 if (current.next.data < ltValue) {
                     current.next = current.next.next;
@@ -100,7 +102,7 @@ public class HW1 {
                     current = current.next;
                 }
             }
-            return;
+            // return;
         }
 
         /*
@@ -111,10 +113,12 @@ public class HW1 {
         public void removeElement(int value) {
 
             // YOUR CODE GOES HERE
+            // Move head to the first node that's not equal to value
             while (head != null && head.data == value) {
                 head = head.next;
             }
             Node current = head;
+            // Go through list and remove nodes with data equal to value
             while (current != null && current.next != null) {
                 if (current.next.data == value) {
                     current.next = current.next.next;
@@ -122,7 +126,7 @@ public class HW1 {
                     current = current.next;
                 }
             }
-            return;
+            // return;
         }
 
         /*
@@ -178,7 +182,18 @@ public class HW1 {
             input = input.toLowerCase().replaceAll("\\s+", "");
 
             // Your CODE GOES HERE
-            return false;
+            // Push all characters onto the stack
+            for (char c : input.toCharArray()) {
+                stack.push(c);
+            }
+            // Compare each charcter with the popped value
+            for (char c : input.toCharArray()) {
+                if (stack.pop() != c) {
+                    // false return if mismatched
+                    return false;
+                }
+            }
+            return true;
         }
 
         /*
