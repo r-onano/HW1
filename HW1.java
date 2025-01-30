@@ -214,7 +214,25 @@ public class HW1 {
         public static int findLargestK(Stack<Integer> stack, int k) {
 
             // YOUR CODE GOES HERE
-            return -1;
+            Stack<Integer> temporaryStack = new Stack<>();
+            int index = -1, currentIndex = stack.size() - 1;
+
+            // Traverse the stack from the top
+            while (!stack.isEmpty()) {
+                int value = stack.pop();
+                if (value == k && index == -1) {
+                    // Updade index when K is found
+                    index = currentIndex;
+                }
+                temporaryStack.push(value);
+                currentIndex--;
+            }
+
+            // The restore the stack back to it's original form
+            while (!temporaryStack.isEmpty()) {
+                stack.push(temporaryStack.pop());
+            }
+            return index;
         }
 
     } // End class Stacks
